@@ -175,7 +175,7 @@ Two types of validation, spread across these files:
 - Airflow DAG 
 - Alerting for failures
 - handling late arriving data
-- integration tests that run the full pipeline end-to-end |
-- ci-cd with GitHub Actions workflow: ruff lint → ruff format check → pytest on PR |
+- integration tests that run the full pipeline end-to-end
+- ci-cd with GitHub Actions workflow
 
 ---
