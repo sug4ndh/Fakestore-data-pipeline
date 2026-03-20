@@ -13,7 +13,7 @@ The instructions below are for *nix systems.
 - DuckDB CLI (optional, for querying results)
 
 ## Setup
-In the root directory, copy the env.example file to .env file and set your secret key:
+In the root directory, copy .env.example file to .env file and set your secret key:
 
 ```bash
 cp .env.example .env
