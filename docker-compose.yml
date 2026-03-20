@@ -1,0 +1,52 @@
+services:
+
+  users:
+    build:
+      context: .
+      dockerfile: pipelines/users/Dockerfile
+    environment:
+      # RUN_DATE defaults to today inside the container (see main.py).
+      # Override for backfill: docker compose run users -e RUN_DATE=2024-01-15
+      - RUN_DATE=${RUN_DATE:-}
+      - PIPELINE_SECRET_KEY=${PIPELINE_SECRET_KEY}
+      - DATA_ROOT=/data
+    volumes:
+      # Bind mount to persist files on the host after the container exits.
+      # Accessible at ./data/ without any Docker commands.
+      - ./data:/data
+
+  products:
+    build:
+      context: .
+      dockerfile: pipelines/products/Dockerfile
+    environment:
+      - RUN_DATE=${RUN_DATE:-}
+      - DATA_ROOT=/data
+    volumes:
+      - ./data:/data
+
+  carts:
+    build:
+      context: .
+      dockerfile: pipelines/carts/Dockerfile
+    environment:
+      - RUN_DATE=${RUN_DATE:-}
+      - DATA_ROOT=/data
+    volumes:
+      - ./data:/data
+
+  warehouse:
+    build:
+      context: .
+      dockerfile: pipelines/warehouse/Dockerfile
+    environment:
+      - DATA_ROOT=/data
+    volumes:
+      - ./data:/data
+    depends_on:
+      users:
+        condition: service_completed_successfully
+      products:
+        condition: service_completed_successfully
+      carts:
+        condition: service_completed_successfully
