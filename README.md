@@ -13,13 +13,19 @@ The instructions below are for *nix systems.
 - DuckDB CLI (optional, for querying results)
 
 ## Setup
-Copy the example env file and set your secret key:
+In the root directory, copy the env.example file to .env file and set your secret key:
 
 ```bash
 cp .env.example .env
 ```
 
 Open `.env` and set `PIPELINE_SECRET_KEY` to something random.
+
+Make the run script executable:
+
+```bash
+chmod +x run.sh
+```
 
 ## Running
 
@@ -175,7 +181,7 @@ Two types of validation, spread across these files:
 - Airflow DAG 
 - Alerting for failures
 - handling late arriving data
-- integration tests that run the full pipeline end-to-end
+- comprehensive unit tests and integration tests that run the full pipeline end-to-end
 - ci-cd with GitHub Actions workflow
 
 ---
