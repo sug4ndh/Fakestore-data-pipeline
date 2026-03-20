@@ -35,7 +35,7 @@ chmod +x run.sh
 ```
 
 This builds and runs all four containers: users, products, carts in parallel then the warehouse once all three finish.
-All data persists in `./data/` after containers exit. Re-run `docker compose up` to append a new
+All data persists in `./data/` after containers exit. Re-run with a different date or on a different date to append a new
 dated partition.
 
 ---
